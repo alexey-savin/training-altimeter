@@ -89,12 +89,11 @@ namespace SSD.TrainingAltimeter
         private void OnTimerTick(object sender, object e)
         {
             TimeSpan timeDiff = DateTime.Now - _lastUpdateTime;
+            UpdateAltitude(Altitude - Velocity * timeDiff.TotalSeconds);
+            
+            _lastUpdateTime = DateTime.Now;
 
             Debug.WriteLine(timeDiff.TotalSeconds.ToString());
-
-            UpdateAltitude(Altitude - Velocity * timeDiff.TotalSeconds);
-
-            _lastUpdateTime = DateTime.Now;
         }
 
         private void UpdateAltitude(double altitude)
