@@ -44,5 +44,7 @@ namespace SSD.TrainingAltimeter
             // Если вы используете NavigationHelper, предоставляемый некоторыми шаблонами,
             // данное событие обрабатывается для вас.
         }
+
+        private AltimeterViewModel ViewModel => (AltimeterViewModel)DataContext;
     }
 }
