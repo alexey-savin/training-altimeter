@@ -12,6 +12,8 @@ namespace SSD.TrainingAltimeter
 {
     class AltimeterViewModel : INotifyPropertyChanged
     {
+        private const int NOMINAL = 3000;
+
         private bool _isStarted = false;
         private DispatcherTimer _timer = null;
         private DateTime _lastUpdateTime;
@@ -27,7 +29,7 @@ namespace SSD.TrainingAltimeter
         {
             // TODO HARDCODE!!!
             _velocity = 50;
-            _altitude = 3000;
+            _altitude = NOMINAL;
 
             _timer = new DispatcherTimer();
             _timer.Tick += OnTimerTick;
@@ -54,7 +56,13 @@ namespace SSD.TrainingAltimeter
             {
                 _altitude = value;
                 OnPropertyChanged(nameof(Altitude));
+                OnPropertyChanged(nameof(AltitudeDegrees));
             }
+        }
+
+        public double AltitudeDegrees
+        {
+            get { return 360 * Altitude / NOMINAL; }
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -77,6 +85,8 @@ namespace SSD.TrainingAltimeter
         private void Start()
         {
             Stop();
+
+            Altitude = NOMINAL;
             _timer.Interval = TimeSpan.FromMilliseconds(250);
             _timer.Start();
             _isStarted = true;
