@@ -7,13 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    
     <Page.DataContext>
         <local:AltimeterViewModel/>
     </Page.DataContext>
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
@@ -30,5 +31,16 @@
                 Command="{Binding StartCommand}"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"/>
+        
+        <Rectangle 
+            Fill="#FFF4F4F5" 
+            HorizontalAlignment="Center" 
+            Height="300" 
+            Grid.Row="2" 
+            Stroke="Black" 
+            VerticalAlignment="Center" 
+            Width="20" RenderTransformOrigin="0.5,0.5">
+        </Rectangle>
+
     </Grid>
 </Page>
